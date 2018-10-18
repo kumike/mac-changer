@@ -24,20 +24,19 @@ elif args.frandom and args.mac is not None and args.interface is None:
 elif args.frandom and args.mac is None and args.interface is None:
     exit(parser.print_help())
 
-oui =  ('b4:99:ba:','e0:43:db:','00:50:ba:','cc:46:d6:','48:ad:08:','f0:a2:25:','8c:f5:a3:',
-        'bc:ec:23:','38:f2:3e:','80:7a:bf:','00:1a:11:','00:11:75:','c4:e9:84:','00:08:22:',
-        '74:a7:8e:','8c:21:0a:','e4:d5:3d:','00:15:58:','00:50:56:','04:b1:67:','bc:75:74:',
-        '00:e0:18:','74:5f:00:','bc:3b:af:','00:19:66:','00:08:ca:','54:fc:f0:','18:21:95:',
-        '40:cb:c0:','18:87:96:','f4:ca:24:','00:16:cf:','00:07:e9:','00:01:42:',
-        '84:10:0d:','75:5a:67:','6c:e3:b6:','94:2c:b3:','00:40:26:','00:01:24:',
-        'c0:98:79:','b0:45:15:','10:12:18:','64:00:2d:','ec:80:09:','00:16:d4:')
+oui =  ('b4:99:ba:','e0:43:db:','00:50:ba:','cc:46:d6:','48:ad:08:','f0:a2:25:','8c:f5:a3:','d4:6e:0e:','e4:58:b8:','00:1c:26:',
+        'bc:ec:23:','38:f2:3e:','80:7a:bf:','00:1a:11:','00:11:75:','c4:e9:84:','00:08:22:','28:28:5d:','d4:a1:48:','30:92:f6:',
+        '74:a7:8e:','8c:21:0a:','e4:d5:3d:','00:15:58:','00:50:56:','04:b1:67:','bc:75:74:','80:26:89:','14:36:c6:','0c:8f:ff:',
+        '00:e0:18:','74:5f:00:','bc:3b:af:','00:19:66:','00:08:ca:','54:fc:f0:','18:21:95:','00:0e:8f:','00:1f:ce:','98:0c:a5:',
+        '40:cb:c0:','18:87:96:','f4:ca:24:','00:16:cf:','00:07:e9:','00:01:42:','30:75:12:','54:27:58:','f4:6d:0d:','00:c0:ca:','94:b1:0a:',
+        '84:10:0d:','75:5a:67:','6c:e3:b6:','94:2c:b3:','00:40:26:','00:01:24:','e8:94:f6:','68:05:71:','c0:4a:00:','64:bc:0c:','b8:08:d7:',
+        'c0:98:79:','b0:45:15:','10:12:18:','64:00:2d:','ec:80:09:','00:16:d4:','bc:72:b1:','94:44:44:','64:66:b3:','e0:aa:96:','b0:55:08:')
 
 link = args.interface
 def changemac(mac):
-    subprocess.Popen('ip link set '+link+' down &&'+'ip link set '+link+' address '+mac+'&& ip link set '+link+' up',shell=True)
-#    subprocess.Popen('ip link set '+link+' down',shell=True)
-#    subprocess.Popen('ip link set '+link+' address '+mac,shell=True)
-#    subprocess.Popen('ip link set '+link+' up',shell=True)
+    subprocess.call('ip link set '+link+' down',shell=True)
+    subprocess.call('ip link set '+link+' address '+mac,shell=True)
+    subprocess.call('ip link set '+link+' up',shell=True)
 
 def validmac():
     rnum = random.choice(range(16**6))
